@@ -78,9 +78,9 @@ class FlightGenerator:
   def handleHtmlContent(self, currentDate, daysShifter):
     shiftedTime = self.dateDataInstance.getTimeShifted(currentDate, daysShifter)
     #print 'shiftedTime=', shiftedTime
-    properURLaddress = self.setDepartureAndArrivalDateInURLRequest(shiftedTime, URL_REQUEST)
-    #print 'properURLaddress= ', properURLaddress
-    htmlContent = self.getHtmlContent(properURLaddress)
+    mountedURLRequest = self.setDepartureAndArrivalDateInURLRequest(shiftedTime, URL_REQUEST)
+    #print 'mountedURLRequest:\n', mountedURLRequest, "\n"
+    htmlContent = self.getHtmlContent(mountedURLRequest)
     faresListContainer = self.getTotalFaresFromHtmlContent(htmlContent)
     self.prepareDictionaryContainerWithLowestFaresForPlot(faresListContainer, shiftedTime)
 
