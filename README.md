@@ -1,5 +1,5 @@
 # FlightChart
-Program is generating charts with flight fares.
+Program is generating forecast flight fares charts.
 
 Requirements:
 1) matplotlib
