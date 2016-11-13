@@ -3,7 +3,7 @@ import matplotlib.pyplot as matplot
 from pprint import pprint
 
 import DateData
-from Config import DESTINATION_DIRECTORY_WITH_PLOTS, DESTINATION_DIRECTORY_WITH_FARES, IS_DEBUG_MODE_SET, SAVE_FLIGHTS_FARES_TO_FILE
+from Config import DESTINATION_DIRECTORY_WITH_PLOTS, DESTINATION_DIRECTORY_WITH_FARES, IS_DEBUG_MODE_SET, SAVE_FLIGHTS_FARES_TO_FILE, CURRENCY
 from GlobalFunctions import createDirectoryIfNotExist
 
 
@@ -25,17 +25,17 @@ class Plotter:
     faresFilename = destinationDirectory + '/' + currentDate.strftime('%Y-%m-%d') + '.txt'
     
     fileDescryptor = open(faresFilename, "w")
-    for orderedListIterator in orderedList:	#iterate through list
+    for orderedListIterator in orderedList:  #iterate through list
       isDateSet = False
-      for tupleIterator in orderedListIterator:	#iterate through tuple
-	#print tupleIterator
-	if not isDateSet:
-	  convertedDate = tupleIterator.strftime('%d/%m/%Y')
-	  fileDescryptor.write("Date: |%s| " % convertedDate)
-	  isDateSet = True
-	else:
-	  fileDescryptor.write("Fare: |%s|\n" % tupleIterator)
-	  isDateSet = False
+      for tupleIterator in orderedListIterator:  #iterate through tuple
+        #print tupleIterator
+        if not isDateSet:
+          convertedDate = tupleIterator.strftime('%d/%m/%Y')
+          fileDescryptor.write("Date: |%s| " % convertedDate)
+          isDateSet = True
+        else:
+          fileDescryptor.write("Fare: |%s|\n" % tupleIterator)
+          isDateSet = False
     fileDescryptor.close()
     
   def prepareData(self):
@@ -49,9 +49,14 @@ class Plotter:
     return orderedListData
     
   def preparePlot(self, orderedList):
-    matplot.figure(figsize = (self.width / self.ppi, self.height / self.ppi), dpi = self.ppi)
+    matplot.figure(figsize = (self.width / self.ppi, self.height / self.ppi))
+    matplot.title('FlightChart', fontsize=26, color='blue')
+    yLabelTitle = 'Fares (' + CURRENCY + ')'
+    matplot.ylabel(yLabelTitle, fontsize=20, color='red')
+    matplot.xlabel('Dates', fontsize=20, color='green')
+    matplot.grid(True)
     xAxis, yAxis = zip(*orderedList)
-    matplot.plot(xAxis, yAxis)
+    matplot.plot(xAxis, yAxis)  #matplot.plot(xAxis, yAxis, 'r^')  generate red triangle
     
   def savePlot(self):
     createDirectoryIfNotExist(self.destinationDirectory)
@@ -61,6 +66,9 @@ class Plotter:
     
   def generatePlot(self):
     orderedListData = self.prepareData()
-    self.preparePlot(orderedListData)
-    self.savePlot()
+    if orderedListData:
+      self.preparePlot(orderedListData)
+      self.savePlot()
+    else:
+      print "EMPTY DATA. UNABLE TO CREATE PLOT!"
     

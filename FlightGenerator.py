@@ -48,10 +48,10 @@ class FlightGenerator:
       wantedSubstringLenIndex = htmlContentRangeIterator + wantedSubstringLen
       
       if htmlContent[htmlContentRangeIterator : wantedSubstringLenIndex] == wantedStringToFindFare:
-	singleFare = self.getSingleFare(htmlContentRangeIterator, wantedSubstringLen, htmlContent)
-	singleFare = convertStringToInt(singleFare)
-	faresListContainer.append(singleFare)
-      htmlContentRangeIterator = htmlContentRangeIterator + 1
+        singleFare = self.getSingleFare(htmlContentRangeIterator, wantedSubstringLen, htmlContent)
+        singleFare = convertStringToInt(singleFare)
+        faresListContainer.append(singleFare)
+        htmlContentRangeIterator = htmlContentRangeIterator + 1
     return faresListContainer
   
   def getLowestFare(self, faresListContainer):
