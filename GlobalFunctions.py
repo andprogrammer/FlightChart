@@ -1,8 +1,6 @@
 #!/usr/bin/python
 import os
 
-import DateData
-
 
 def convertStringToInt(content):
   if content:
