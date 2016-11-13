@@ -48,9 +48,9 @@ class Plotter:
 
     return orderedListData
     
-  def preparePlot(self, dataDictionary):
+  def preparePlot(self, orderedList):
     matplot.figure(figsize = (self.width / self.ppi, self.height / self.ppi), dpi = self.ppi)
-    xAxis, yAxis = zip(*dataDictionary)
+    xAxis, yAxis = zip(*orderedList)
     matplot.plot(xAxis, yAxis)
     
   def savePlot(self):
