@@ -4,8 +4,17 @@ import time
 
 import DateData
 import Plotter
-from Config import IS_DEBUG_MODE_SET, DUMMY_DEPARTURE_AND_ARRIVAL_DATE, URL_REQUEST, DAYS_SHIFTER, PERIOD, SLEEP_TIME, PLOT_WIDTH, PLOT_HEIGHT, PLOT_PPI
-from GlobalFunctions import convertStringToInt
+from Config import (
+  DUMMY_DEPARTURE_AND_ARRIVAL_DATE,
+  URL_REQUEST, 
+  DAYS_SHIFTER, 
+  PERIOD, 
+  SLEEP_TIME, 
+  PLOT_WIDTH, 
+  PLOT_HEIGHT, 
+  PLOT_PPI
+)
+from GlobalFunctions import convertStringToInt, PRINT_DEBUG
 
 
 class FlightGenerator:
@@ -87,8 +96,7 @@ class FlightGenerator:
   def prepareDictionaryContainerWithLowestFaresForPlot(self, dataListContainer, shiftedTime):
     lowestPrice = self.getLowestFare(dataListContainer)
     
-    if IS_DEBUG_MODE_SET:
-      print 'dataListContainer= ', dataListContainer
+    PRINT_DEBUG("dataListContainer", dataListContainer)
     self.dictionaryContainerForPlot[shiftedTime] = lowestPrice
 
   def calculateFlight(self):
