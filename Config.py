@@ -26,8 +26,8 @@ URL_REQUEST = "http://www.azair.eu/azfin.php?tp=0&searchtype=flexi&srcAirport=" 
 
 #Plot settings
 DAYS_SHIFTER = 1				#after x days from current day start creating the plot
-PERIOD = 3					    #generete plot for (PERIOD - 1) days
-SLEEP_TIME = 2					#sleep time prevent suspicion of web scraping
+PERIOD = 10					    #generete plot for (PERIOD - 1) days
+SLEEP_TIME = 4					#sleep time prevent suspicion of web scraping
 PLOT_WIDTH = 2500
 PLOT_HEIGHT = 1000
 PLOT_PPI = 72

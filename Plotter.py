@@ -83,7 +83,7 @@ class Plotter:
       PRINT_DEBUG("startingDate", self.startingDate)
       PRINT_DEBUG("endDate", self.endDate)
     
-  def prepareData(self):
+  def getPreparedData(self):
     orderedListData = sorted(self.dataDictionary.items())	#sort ascending by date (key)
     
     if IS_DEBUG_MODE_SET:
@@ -118,11 +118,13 @@ class Plotter:
   def savePlot(self):
     createDirectoryIfNotExist(self.destinationDirectory)
     currentDate = self.dateDataInstance.getCurrentDate()
-    plotFilename = self.destinationDirectory + '/' + currentDate.strftime('%Y-%m-%d') + '.png'
-    matplot.savefig(plotFilename, dpi=self.ppi, bbox_inches='tight')
+    
+    if currentDate:
+      plotFilename = self.destinationDirectory + '/' + currentDate.strftime('%Y-%m-%d') + '.png'
+      matplot.savefig(plotFilename, dpi=self.ppi, bbox_inches='tight')
     
   def generatePlot(self):
-    orderedListData = self.prepareData()
+    orderedListData = self.getPreparedData()
     if orderedListData:
       self.preparePlot(orderedListData)
       self.savePlot()

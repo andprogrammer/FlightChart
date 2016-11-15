@@ -14,7 +14,7 @@ from Config import (
   PLOT_HEIGHT, 
   PLOT_PPI
 )
-from GlobalFunctions import convertStringToInt, PRINT_DEBUG
+from GlobalFunctions import convertStringToInt, PRINT_DEBUG#, printConfigSettings
 
 
 class FlightGenerator:
@@ -58,9 +58,11 @@ class FlightGenerator:
       
       if htmlContent[htmlContentRangeIterator : wantedSubstringLenIndex] == wantedStringToFindFare:
         singleFare = self.getSingleFare(htmlContentRangeIterator, wantedSubstringLen, htmlContent)
-        singleFare = convertStringToInt(singleFare)
-        faresListContainer.append(singleFare)
-        htmlContentRangeIterator = htmlContentRangeIterator + 1
+        
+        if singleFare:
+          singleFare = convertStringToInt(singleFare)
+          faresListContainer.append(singleFare)
+          htmlContentRangeIterator = htmlContentRangeIterator + 1
     return faresListContainer
   
   def getLowestFare(self, faresListContainer):
@@ -89,15 +91,22 @@ class FlightGenerator:
     #print 'shiftedTime=', shiftedTime
     mountedURLRequest = self.setDepartureAndArrivalDateInURLRequest(shiftedTime, URL_REQUEST)
     #print 'mountedURLRequest:\n', mountedURLRequest, "\n"
-    htmlContent = self.getHtmlContent(mountedURLRequest)
-    faresListContainer = self.getTotalFaresFromHtmlContent(htmlContent)
-    self.prepareDictionaryContainerWithLowestFaresForPlot(faresListContainer, shiftedTime)
+    
+    if mountedURLRequest:
+      htmlContent = self.getHtmlContent(mountedURLRequest)
+      
+      if htmlContent:
+        faresListContainer = self.getTotalFaresFromHtmlContent(htmlContent)
+        
+        if faresListContainer:
+          self.prepareDictionaryContainerWithLowestFaresForPlot(faresListContainer, shiftedTime)
 
   def prepareDictionaryContainerWithLowestFaresForPlot(self, dataListContainer, shiftedTime):
     lowestPrice = self.getLowestFare(dataListContainer)
     
-    PRINT_DEBUG("dataListContainer", dataListContainer)
-    self.dictionaryContainerForPlot[shiftedTime] = lowestPrice
+    if lowestPrice:
+      PRINT_DEBUG("dataListContainer", dataListContainer)
+      self.dictionaryContainerForPlot[shiftedTime] = lowestPrice
 
   def calculateFlight(self):
     currentDate = self.dateDataInstance.getCurrentDate()
@@ -114,6 +123,7 @@ class FlightGenerator:
       plotterInstance.generatePlot()
 
   def generateFlightsFaresWithPlot(self):
+    #printConfigSettings()
     self.calculateFlight()
     self.generatePlot()
     
