@@ -1,0 +1,79 @@
+---------------Config settings---------------
+Flight type [oneway | return]: |oneway|
+Source airport: |Krakow|
+Destination airport: |London|
+Number of adults: |1|
+Number of children: |0|
+Number of infants: |0|
+Max changes: |0|
+Currency: |PLN|
+Period [days]: |69|
+---------------------------------------------
+Date: |18/11/2016| Fare: |628|
+Date: |19/11/2016| Fare: |738|
+Date: |20/11/2016| Fare: |869|
+Date: |21/11/2016| Fare: |628|
+Date: |22/11/2016| Fare: |628|
+Date: |23/11/2016| Fare: |528|
+Date: |24/11/2016| Fare: |369|
+Date: |25/11/2016| Fare: |197|
+Date: |26/11/2016| Fare: |161|
+Date: |27/11/2016| Fare: |528|
+Date: |28/11/2016| Fare: |233|
+Date: |29/11/2016| Fare: |369|
+Date: |30/11/2016| Fare: |369|
+Date: |01/12/2016| Fare: |125|
+Date: |02/12/2016| Fare: |161|
+Date: |03/12/2016| Fare: |134|
+Date: |04/12/2016| Fare: |233|
+Date: |05/12/2016| Fare: |181|
+Date: |06/12/2016| Fare: |125|
+Date: |07/12/2016| Fare: |153|
+Date: |08/12/2016| Fare: |64|
+Date: |09/12/2016| Fare: |64|
+Date: |10/12/2016| Fare: |64|
+Date: |11/12/2016| Fare: |233|
+Date: |12/12/2016| Fare: |125|
+Date: |13/12/2016| Fare: |64|
+Date: |14/12/2016| Fare: |64|
+Date: |15/12/2016| Fare: |64|
+Date: |16/12/2016| Fare: |64|
+Date: |17/12/2016| Fare: |64|
+Date: |18/12/2016| Fare: |64|
+Date: |19/12/2016| Fare: |64|
+Date: |20/12/2016| Fare: |116|
+Date: |21/12/2016| Fare: |219|
+Date: |22/12/2016| Fare: |219|
+Date: |23/12/2016| Fare: |161|
+Date: |24/12/2016| Fare: |309|
+Date: |26/12/2016| Fare: |161|
+Date: |27/12/2016| Fare: |438|
+Date: |28/12/2016| Fare: |259|
+Date: |29/12/2016| Fare: |309|
+Date: |30/12/2016| Fare: |369|
+Date: |31/12/2016| Fare: |369|
+Date: |01/01/2017| Fare: |768|
+Date: |02/01/2017| Fare: |899|
+Date: |03/01/2017| Fare: |768|
+Date: |04/01/2017| Fare: |548|
+Date: |05/01/2017| Fare: |458|
+Date: |06/01/2017| Fare: |379|
+Date: |07/01/2017| Fare: |458|
+Date: |08/01/2017| Fare: |458|
+Date: |09/01/2017| Fare: |438|
+Date: |10/01/2017| Fare: |309|
+Date: |11/01/2017| Fare: |181|
+Date: |12/01/2017| Fare: |125|
+Date: |13/01/2017| Fare: |116|
+Date: |14/01/2017| Fare: |116|
+Date: |15/01/2017| Fare: |161|
+Date: |16/01/2017| Fare: |125|
+Date: |17/01/2017| Fare: |90|
+Date: |18/01/2017| Fare: |90|
+Date: |19/01/2017| Fare: |104|
+Date: |20/01/2017| Fare: |116|
+Date: |21/01/2017| Fare: |116|
+Date: |22/01/2017| Fare: |161|
+Date: |23/01/2017| Fare: |104|
+Date: |24/01/2017| Fare: |90|
+Date: |25/01/2017| Fare: |90|
