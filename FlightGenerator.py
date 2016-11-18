@@ -20,7 +20,7 @@ from GlobalFunctions import convertStringToInt, PRINT_DEBUG#, printConfigSetting
 class FlightGenerator:
   
   def __init__(self):
-    self.dictionaryContainerForPlot = dict()
+    self.dictionaryForPlot = dict()
     self.dateDataInstance = DateData.DateData()
     
   def setDepartureAndArrivalDateInURLRequest(self, shiftedTime, urlRequest):
@@ -48,7 +48,7 @@ class FlightGenerator:
   
   def getTotalFaresFromHtmlContent(self, htmlContent):
     wantedStringToFindFare = 'Total:'
-    faresListContainer = []
+    faresList = []
     wantedSubstringLen = len(wantedStringToFindFare)
     htmlContentLen = len(htmlContent)
     htmlContentRange = range(0, htmlContentLen)
@@ -61,19 +61,19 @@ class FlightGenerator:
         
         if singleFare:
           singleFare = convertStringToInt(singleFare)
-          faresListContainer.append(singleFare)
+          faresList.append(singleFare)
           htmlContentRangeIterator = htmlContentRangeIterator + 1
-    return faresListContainer
+    return faresList
   
-  def getLowestFare(self, faresListContainer):
-    if faresListContainer:
-      #print 'min(faresListContainer)= ', min(faresListContainer)
-      return min(faresListContainer)
+  def getLowestFare(self, faresList):
+    if faresList:
+      #print 'min(faresList)= ', min(faresList)
+      return min(faresList)
 
-  def getHighestFare(self, faresListContainer):
-    if faresListContainer:
-      #print 'max(faresListContainer) =', max(faresListContainer)
-      return max(faresListContainer)
+  def getHighestFare(self, faresList):
+    if faresList:
+      #print 'max(faresList) =', max(faresList)
+      return max(faresList)
 
   def getHtmlContent(self, URLrequest):
     requestURL = urllib2.Request(URLrequest)
@@ -96,17 +96,17 @@ class FlightGenerator:
       htmlContent = self.getHtmlContent(mountedURLRequest)
       
       if htmlContent:
-        faresListContainer = self.getTotalFaresFromHtmlContent(htmlContent)
+        faresList = self.getTotalFaresFromHtmlContent(htmlContent)
         
-        if faresListContainer:
-          self.prepareDictionaryContainerWithLowestFaresForPlot(faresListContainer, shiftedTime)
+        if faresList:
+          self.prepareDictionaryWithLowestFaresForPlot(faresList, shiftedTime)
 
-  def prepareDictionaryContainerWithLowestFaresForPlot(self, dataListContainer, shiftedTime):
-    lowestPrice = self.getLowestFare(dataListContainer)
+  def prepareDictionaryWithLowestFaresForPlot(self, dataList, shiftedTime):
+    lowestPrice = self.getLowestFare(dataList)
     
     if lowestPrice:
-      PRINT_DEBUG("dataListContainer", dataListContainer)
-      self.dictionaryContainerForPlot[shiftedTime] = lowestPrice
+      PRINT_DEBUG("dataList", dataList)
+      self.dictionaryForPlot[shiftedTime] = lowestPrice
 
   def calculateFlight(self):
     currentDate = self.dateDataInstance.getCurrentDate()
@@ -118,8 +118,8 @@ class FlightGenerator:
       time.sleep(SLEEP_TIME)
       
   def generatePlot(self):
-    if self.dictionaryContainerForPlot:
-      plotterInstance = Plotter.Plotter(PLOT_WIDTH, PLOT_HEIGHT, PLOT_PPI, self.dictionaryContainerForPlot)
+    if self.dictionaryForPlot:
+      plotterInstance = Plotter.Plotter(PLOT_WIDTH, PLOT_HEIGHT, PLOT_PPI, self.dictionaryForPlot)
       plotterInstance.generatePlot()
 
   def generateFlightsFaresWithPlot(self):
