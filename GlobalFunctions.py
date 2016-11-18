@@ -34,7 +34,7 @@ def createDirectoryIfNotExist(directoryName):
   if not os.path.exists(directoryName):
     os.makedirs(directoryName)
 
-def convertDate(date):
+def convertDate(date):      #convert to string
   return date.strftime('%Y-%m-%d')
   
 def PRINT_DEBUG(argument, value):

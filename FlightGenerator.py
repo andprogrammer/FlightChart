@@ -14,7 +14,7 @@ from Config import (
   PLOT_HEIGHT, 
   PLOT_PPI
 )
-from GlobalFunctions import convertStringToInt, PRINT_DEBUG#, printConfigSettings
+from GlobalFunctions import convertStringToInt, convertDate, PRINT_DEBUG#, printConfigSettings
 
 
 class FlightGenerator:
@@ -22,6 +22,8 @@ class FlightGenerator:
   def __init__(self):
     self.dictionaryForPlot = dict()
     self.dateDataInstance = DateData.DateData()
+    self.lowestFare = 99999   #sys.maxsize  #import sys  #try: except ImportError:
+    self.lowestFareDate = None
     
   def setDepartureAndArrivalDateInURLRequest(self, shiftedTime, urlRequest):
     shiftedTimeAsString = self.dateDataInstance.getFormatedDateForURLRequestAsString(shiftedTime)
@@ -101,12 +103,19 @@ class FlightGenerator:
         if faresList:
           self.prepareDictionaryWithLowestFaresForPlot(faresList, shiftedTime)
 
-  def prepareDictionaryWithLowestFaresForPlot(self, dataList, shiftedTime):
+  def setLowestFare(self, fare, date):
+    if fare < self.lowestFare:
+      self.lowestFare = fare
+      self.lowestFareDate = convertDate(date)
+
+  def prepareDictionaryWithLowestFaresForPlot(self, dataList, shiftedDate):
     lowestPrice = self.getLowestFare(dataList)
     
     if lowestPrice:
+      self.setLowestFare(lowestPrice, shiftedDate)
+      
       PRINT_DEBUG("dataList", dataList)
-      self.dictionaryForPlot[shiftedTime] = lowestPrice
+      self.dictionaryForPlot[shiftedDate] = lowestPrice
 
   def calculateFlight(self):
     currentDate = self.dateDataInstance.getCurrentDate()
@@ -126,4 +135,6 @@ class FlightGenerator:
     #printConfigSettings()
     self.calculateFlight()
     self.generatePlot()
+    PRINT_DEBUG("lowestFare", self.lowestFare)
+    PRINT_DEBUG("lowestFareDate", self.lowestFareDate)
     
