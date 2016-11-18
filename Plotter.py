@@ -18,12 +18,12 @@ from Config import (
   CURRENCY, 
   PERIOD,
 )
-from GlobalFunctions import createDirectoryIfNotExist, convertDate, PRINT_DEBUG
+from GlobalFunctions import createDirectoryIfNotExist, convertDate, convertIntToString, PRINT_DEBUG
 
 
 class Plotter:
   
-  def __init__(self, width, height, ppi, dataDictionary, destinationDirectory = DESTINATION_DIRECTORY_WITH_PLOTS):
+  def __init__(self, width, height, ppi, dataDictionary, lowestFare, destinationDirectory = DESTINATION_DIRECTORY_WITH_PLOTS):
     self.width = width
     self.height = height
     self.ppi = ppi
@@ -32,6 +32,7 @@ class Plotter:
     self.dateDataInstance = DateData.DateData()
     self.startingDate = ""
     self.endDate = ""
+    self.lowestFare = lowestFare
     
   def writeConfigSettingsToFile(self, fileDescryptor):
     fileDescryptor.write("---------------Config settings---------------\n")
@@ -103,7 +104,7 @@ class Plotter:
     matplot.ylabel(yLabelTitle, fontsize=20, color='red')
     
   def setXLabelPlotTitle(self):
-    xLabelPlotTitle = "\nDates [" + self.startingDate + " - " + self.endDate + "]\n"
+    xLabelPlotTitle = "\nDates [" + self.startingDate + " - " + self.endDate + "]    Lowest fare = " + convertIntToString(self.lowestFare) + "\n"
     matplot.xlabel(xLabelPlotTitle, fontsize=20, color='green')
     
   def preparePlot(self, orderedList):

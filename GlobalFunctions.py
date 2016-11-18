@@ -30,6 +30,9 @@ def convertStringToInt(content):
     return int(content)
   return 0	#TODO handle this case
 
+def convertIntToString(value):
+  return str(value)
+
 def createDirectoryIfNotExist(directoryName):
   if not os.path.exists(directoryName):
     os.makedirs(directoryName)

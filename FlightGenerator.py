@@ -128,7 +128,7 @@ class FlightGenerator:
       
   def generatePlot(self):
     if self.dictionaryForPlot:
-      plotterInstance = Plotter.Plotter(PLOT_WIDTH, PLOT_HEIGHT, PLOT_PPI, self.dictionaryForPlot)
+      plotterInstance = Plotter.Plotter(PLOT_WIDTH, PLOT_HEIGHT, PLOT_PPI, self.dictionaryForPlot, self.lowestFare)
       plotterInstance.generatePlot()
 
   def generateFlightsFaresWithPlot(self):
