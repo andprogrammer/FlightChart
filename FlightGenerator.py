@@ -109,13 +109,13 @@ class FlightGenerator:
       self.lowestFareDate = convertDate(date)
 
   def prepareDictionaryWithLowestFaresForPlot(self, dataList, shiftedDate):
-    lowestPrice = self.getLowestFare(dataList)
+    lowestFare = self.getLowestFare(dataList)
     
-    if lowestPrice:
-      self.setLowestFare(lowestPrice, shiftedDate)
+    if lowestFare:
+      self.setLowestFare(lowestFare, shiftedDate)
       
       PRINT_DEBUG("dataList", dataList)
-      self.dictionaryForPlot[shiftedDate] = lowestPrice
+      self.dictionaryForPlot[shiftedDate] = lowestFare
 
   def calculateFlight(self):
     currentDate = self.dateDataInstance.getCurrentDate()
